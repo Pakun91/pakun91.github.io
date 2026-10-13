@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.pakun91.goldfish",
+    "sha256_cert_fingerprints": ["04:A9:B0:B5:4F:E6:3F:71:94:76:BF:99:F7:46:8E:CA:68:41:DA:EC:6B:00:BD:B0:4B:8E:49:1E:C4:82:C9:81"]
+  }
+}]

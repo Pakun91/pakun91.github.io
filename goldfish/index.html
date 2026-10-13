@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Abrir en Goldfish</title>
+<meta property="og:title" content="Goldfish"><meta property="og:description" content="Abrir este mazo en la app Goldfish">
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0b0b0c; color: #e8e8e8; font: 16px system-ui, sans-serif; text-align: center; padding: 24px; box-sizing: border-box; }
+  .c { max-width: 360px; } h1 { color: #f0a03d; font-size: 22px; margin: 0 0 10px; } p { color: #b9b9bf; margin: 10px 0; }
+  a.b { display: inline-block; margin-top: 14px; padding: 14px 28px; background: #f0a03d; color: #111; border-radius: 12px; font-weight: 700; text-decoration: none; }
+</style></head><body><div class="c">
+  <h1>Goldfish</h1>
+  <p id="msg">Abriendo el mazo en la app…</p>
+  <a class="b" id="abrir" href="#">Abrir en la app</a>
+  <p id="aviso" style="font-size:13px">Si no se abre, hace falta tener la app Goldfish instalada en este móvil (Android).</p>
+</div>
+<script>
+  // Con la app instalada y verificada, Android abre la app directamente al tocar el enlace y esta pagina ni se ve. Esto es el respaldo (navegador sin App Links).
+  var r = new URLSearchParams(location.search).get('r') || '';
+  var ok = r.charAt(0) === '/' && r.charAt(1) !== '/';
+  var android = /android/i.test(navigator.userAgent);
+  var esquema = 'goldfish://abrir?r=' + encodeURIComponent(r);
+  var intent = 'intent://abrir?r=' + encodeURIComponent(r) + '#Intent;scheme=goldfish;package=com.pakun91.goldfish;end';
+  var b = document.getElementById('abrir');
+  if (!ok) { document.getElementById('msg').textContent = 'Enlace no válido.'; b.style.display = 'none'; }
+  else if (!android) { document.getElementById('msg').textContent = 'Este enlace se abre en la app Goldfish para Android.'; b.style.display = 'none'; }
+  else { b.href = intent; setTimeout(function () { location.href = intent; }, 300); }
+</script></body></html>
